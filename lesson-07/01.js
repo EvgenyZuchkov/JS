@@ -17,3 +17,27 @@ const WEB_TECH_IMAGES = [
   'https://production-it-incubator.s3.eu-central-1.amazonaws.com/file-manager/Image/c8a1f4a6-1337-4899-bdfd-a8c9c7bb806a_css-magic-logo.jpg',
   'https://production-it-incubator.s3.eu-central-1.amazonaws.com/file-manager/Image/784380b9-6937-42a6-bdfe-869835820234_html-magic-logo.jpg',
 ]
+
+let element = document.getElementById('web-tech-image')
+let nextElement = document.getElementById('next-button')
+let prevElement = document.getElementById('prev-button')
+let startIndex = 0
+
+function nextImage() {
+  startIndex++
+  if (startIndex > WEB_TECH_IMAGES.length -1) {
+    startIndex = 0
+  }
+  return element.src = WEB_TECH_IMAGES[startIndex]
+}
+
+function prevImage() {
+  startIndex--
+  if (startIndex < 0) {
+    startIndex = WEB_TECH_IMAGES.length - 1
+  }
+  return element.src = WEB_TECH_IMAGES[startIndex]
+}
+
+nextElement.addEventListener('click', nextImage)
+prevElement.addEventListener('click', prevImage)
