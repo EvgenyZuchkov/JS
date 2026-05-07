@@ -36,24 +36,30 @@ startButton.addEventListener('click', () => {
   let counter = 3
 
   // your code
-  isTimerStarted = true
-  if (isTimerStarted) {countdownDisplay.textContent = counter}
+  if (isTimerStarted) return
+
+
+    isTimerStarted = true
+    countdownDisplay.textContent = counter
 
   timerId = setInterval(function () {
+    counter--
 
-    if(counter > 0) {
-      countdownDisplay.textContent = --counter
-      if (counter === 0) {
-        countdownDisplay.textContent = '🚀'
-      }
+    if (counter > 0) {
+      countdownDisplay.textContent = counter
+    } else {
+      countdownDisplay.textContent = '🚀'
+      clearInterval(timerId)
+      isTimerStarted = false
     }
   }, 1000)
 })
 
 cancelButton.addEventListener('click', () => {
   // your code
-
-  clearInterval(timerId)
-  isTimerStarted = false
-  countdownDisplay.textContent = 'Отменено'
+  if (isTimerStarted) {
+    clearInterval(timerId)
+    isTimerStarted = false
+    countdownDisplay.textContent = 'Отменено'
+  }
 })
